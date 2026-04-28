@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import React from "react";
+import { useState } from "react";
 
 const collections1 = [
   {
@@ -20,28 +21,34 @@ const collections1 = [
 ];
 const collections2 = [
   {
-    image: assets.relaxTrouser,
+    image: assets.trouserfull,
+    zoomimage: assets.relaxTrouser,
     desc: "Relaxed Straight-Leg Trousers",
     price: "₹78.00",
   },
   {
-    image: assets.babytee,
+    image: assets.babyteefull,
+    zoomimage: assets.babytee,
     desc: "Classic Cotton Bay Tee",
     price: "₹35.00",
   },
   {
-    image: assets.trenchcoat,
+    image: assets.trenchcoatfull,
+    zoomimage: assets.trenchcoat,
     desc: "Classic Trench Coat",
     price: "₹260.00",
   },
   {
-    image: assets.shocks,
+    image: assets.shocks1,
+    zoomimage: assets.shocks,
     desc: "Ribbed Wool Socks",
     price: "₹30.00",
   },
 ];
 
 const MostCoveted = () => {
+  // const [hovered,setHovered] =useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
     <div className="pt-24 w-full h-full">
       <h2 className="text-center text-xl sm:text-3xl font-bold tracking-tight ">
@@ -86,7 +93,11 @@ const MostCoveted = () => {
         <div className="flex flex-col justify-center items-start gap-8">
           {collections2.map((item, index) => (
             <div className="" key={index}>
-              <img src={item.image} alt="image" className="" />
+              <div className="overflow-hidden w-full h-400px] sm:h-[535px]"
+              onMouseEnter={()=>setHoveredIndex(index)}
+              onMouseLeave={()=>setHoveredIndex(null)}>
+                <img src={hoveredIndex ===index ? item.zoomimage :item.image} alt="image" className="sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110" />
+              </div>  
               <div className="flex justify-between  pt-2">
                 <p className="font-semibold text-xl sm:text-2xl">{item.desc}</p>
                 <p className="font-semibold text-lg">{item.price}</p>
@@ -103,10 +114,11 @@ const MostCoveted = () => {
         <div className="flex flex-col sm:space-y-4 space-y-2">
           <h3 className="text-3xl sm:text-6xl font-semibold ">Our Story </h3>
           <p className="text-sm sm:text-xl font-semibold text-[#404040] leading-tight ">
-            Shopora is about effortless <br className="hidden sm:block " /> sophistication. We create the{" "}
-            <br className="hidden sm:block "/>
+            Shopora is about effortless <br className="hidden sm:block " />{" "}
+            sophistication. We create the <br className="hidden sm:block " />
             foundational pieces that simplify <br className="hidden sm:block" />
-            dressing, so you can focus on what <br className="hidden sm:block"/>
+            dressing, so you can focus on what{" "}
+            <br className="hidden sm:block" />
             matters most.
           </p>
         </div>

@@ -32,19 +32,19 @@ const appData = [
 const shopData = [
   {
     title: "All Products",
-    link: "/products",
+    link: "/category/all-products",
   },
   {
     title: "Women",
-    link: "/women",
+    link: "/category/women",
   },
   {
     title: "Men",
-    link: "/men",
+    link: "/category/men",
   },
   {
     title: "Accessories",
-    link: "/accessories",
+    link: "/category/accessories",
   },
   {
     title: "Search Results",
@@ -121,14 +121,12 @@ const Footer = () => {
         </div>
         {/* stay updated */}
         <div className="sm:pl-0 pl-8 pb-10">
-          <h3 className="text-xl sm:text-2xl font-semibold  ">
-            STAY UPDATED  
-          </h3>
+          <h3 className="text-xl sm:text-2xl font-semibold  ">STAY UPDATED</h3>
         </div>
       </div>
       {/* 2 */}
       <div className="pb-10  ">
-        <p className="font-semibold text-sm leading-tight sm:px-8 pl-6"> 
+        <p className="font-semibold text-sm leading-tight sm:px-8 pl-6">
           © 2035 Shopora. Designed for the modern individual.
         </p>
       </div>
