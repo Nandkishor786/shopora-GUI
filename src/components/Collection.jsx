@@ -6,17 +6,17 @@ const collections = [
   {
     title: "Men",
     image: assets.menshop,
-    link: "/men",
+    link: "/category/men",
   },
     {
     title: "Accessories",
     image: assets.accessoriesshop,
-    link: "/accessories",
+    link: "/category/accessories",
   },
   {
     title: "Women",
     image: assets.womenshop,
-    link: "/women",
+    link: "/category/women",
   },
 
 ];

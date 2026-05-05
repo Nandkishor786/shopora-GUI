@@ -33,7 +33,7 @@ const CategoryLayout = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="max-w-7xl  flex flex-col justify-start items-start gap-16 py-8 px-4">
+    <div className="max-w-7xl  flex flex-col justify-start items-start gap-16 py-8 mb-20 px-4">
       {/* top */}
       <div className="space-y-2">
         <h3 className="text-3xl font-semibold">{topData[pathname]}</h3>

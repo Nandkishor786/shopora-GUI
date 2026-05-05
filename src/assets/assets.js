@@ -43,8 +43,40 @@ import blousefull from "./images/blousefull.png"
 import blousefull1 from "./images/blousefull1.png"
 import blousefull2 from "./images/blousefull2.png"
 import blousehover from "./images/blousehover.png"
+import handbag from "./images/handbag.png"
+import handbag2 from "./images/handbag2.png"
+import handbag3 from "./images/handbag3.png"
+import handbaghover from "./images/handbaghover.png"
+import top from "./images/top.png"
+import top1 from "./images/top1.png"
+import top2 from "./images/top2.png"
+import tophover from "./images/tophover.png"
+import knit from "./images/knit.png"
+import knit1 from "./images/knit1.png"
+import knit2 from "./images/knit2.png"
+import knithover from "./images/knithover.png"
+import sweater from "./images/sweater.png"
+import sweater1 from "./images/sweater1.png"
+import sweater2 from "./images/sweater2.png"
+import sweaterhover from "./images/sweaterhover.png"
 
 export const assets = {
+  handbag,
+  handbag2,
+  handbag3,
+  handbaghover,
+  top,
+  top1,
+  top2,
+  tophover,
+  knit,
+  knit1,
+  knit2,
+  knithover,
+  sweater,
+  sweater1,
+  sweater2,
+  sweaterhover,
   blousefull,
   blousefull1,
   blousefull2,

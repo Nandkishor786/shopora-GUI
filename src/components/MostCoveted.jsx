@@ -9,14 +9,14 @@ const collections1 = [
     heading: "The Perfect Trouser",
     desc: "Impeccably tailored for a modern fit. The cornerstone of a versatile wardrobe.",
     linktittle: "Menswear",
-    link: "/men",
+    link: "/category/men",
   },
   {
     image: assets.dress,
     heading: "The Statement Dress",
     desc: "A study in modern elegance. Effortlessly transitions from work to evening.",
     linktittle: "Womenswear",
-    link: "/women",
+    link: "/category/women",
   },
 ];
 const collections2 = [

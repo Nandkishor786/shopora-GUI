@@ -11,19 +11,22 @@ import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import CategoryLayout from "./layout/CategoryLayout";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
+    <ScrollToTop/>
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
           {/* categories */}
           <Route path="category" element={<CategoryLayout/>}>
-          <Route path="all-products" element={<AllProducts />} />
+          <Route  path=":category" element={<AllProducts/>}/>
+          {/* <Route path="all-products" element={<AllProducts />} />
             <Route path="women" element={<Women />} />
             <Route path="men" element={<Men />} />
-          <Route path="accessories" element={<Accessories />} />
+          <Route path="accessories" element={<Accessories />} /> */}
           </Route>
           <Route path="search" element={<SearchResult />} />
           <Route path="signup" element={<Signup />} />

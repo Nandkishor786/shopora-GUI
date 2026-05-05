@@ -4,12 +4,14 @@ import { useState } from "react";
 
 const ProductCard = ({ item }) => {
   const [hovered, setHovered] = useState(false);
+  const isMobile = window.innerWidth < 640;
 
   return (
     <div
       className="cursor-pointer "
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={!isMobile ? () => setHovered(true) : undefined}
+      onMouseLeave={!isMobile ? () => setHovered(false) : undefined}
+      onClick={isMobile ? () => setHovered((prev) => !prev) : undefined}
     >
       {/* img */}
       <div className="relative overflow-hidden h-[300px] sm:h-[550px]">
@@ -20,12 +22,14 @@ const ProductCard = ({ item }) => {
         />
         <button className="absolute bottom-6 right-6 bg-white p-2 ">
           <Add className="text-black font-bold h-5 w-5" />
-        </button>   
+        </button>
       </div>
       {/* text */}
       <div className="flex justify-between items-center pt-2">
         <p className="font-semibold text-2xl">{item.name}</p>
-        <p className="font-semibold text-[#404040] text-base">₹{item.price.toFixed(2)}</p>
+        <p className="font-semibold text-[#404040] text-base">
+          ₹{item.price.toFixed(2)}
+        </p>
       </div>
     </div>
   );
