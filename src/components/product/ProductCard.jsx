@@ -1,24 +1,29 @@
 import { Add } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const ProductCard = ({ item }) => {
   const [hovered, setHovered] = useState(false);
-  const isMobile = window.innerWidth < 640;
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = item.hoverImage;
+  }, [item.hoverImage]);
 
   return (
     <div
-      className="cursor-pointer "
-      onMouseEnter={!isMobile ? () => setHovered(true) : undefined}
-      onMouseLeave={!isMobile ? () => setHovered(false) : undefined}
-      onClick={isMobile ? () => setHovered((prev) => !prev) : undefined}
+      className="cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onTouchStart={() => setHovered(true)}
+      onTouchEnd={() => setHovered(false)}
     >
       {/* img */}
       <div className="relative overflow-hidden h-[300px] sm:h-[550px]">
         <img
           src={hovered ? item.hoverImage : item.image}
           alt="img"
-          className="object-cover transition-all duration-500 w-full h-full "
+          className={`object-cover transition-transform duration-300 w-full h-full ${hovered ? "scale-110" : "scale-100"}`}
         />
         <button className="absolute bottom-6 right-6 bg-white p-2 ">
           <Add className="text-black font-bold h-5 w-5" />
