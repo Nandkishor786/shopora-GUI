@@ -20,26 +20,27 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const data = await loginUser(formData);
+  try {
+    const data = await loginUser(formData);
 
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      if (data.user.role !== "user") {
-        alert("User access only");
-        return;
-      }
-
-      alert("Login Successful");
-
-      navigate("/");
-    } catch (err) {
-      console.log(err);
+    if (data.user.role !== "user") {
+      alert("User access only");
+      return;
     }
-  };
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    alert("Login Successful");
+
+    navigate("/");
+
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <div className="min-h-screen flex justify-center items-center  ">
