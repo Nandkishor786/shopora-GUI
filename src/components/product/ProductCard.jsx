@@ -5,13 +5,11 @@ import { useEffect, useState } from "react";
 const ProductCard = ({ item }) => {
   const [hovered, setHovered] = useState(false);
 
-  // MAIN IMAGE
-  const firstImage = item.images?.[0]
+  const firstImage = item?.images?.[0]
     ? `${import.meta.env.VITE_BACKEND_URL}/${item.images[0]}`
     : "";
 
-  // SECOND IMAGE
-  const secondImage = item.images?.[1]
+  const secondImage = item?.images?.[1]
     ? `${import.meta.env.VITE_BACKEND_URL}/${item.images[1]}`
     : firstImage;
 
