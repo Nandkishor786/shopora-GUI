@@ -244,18 +244,7 @@ import useProducts from "../hooks/useProducts";
 // ];
 
 const AllProducts = () => {
-  //we handle all category men,women,acessories from here
-  //donot need to create saparted components
-
-  // const obj =useLocation();
-  // const { pathname } = useLocation();
-  // console.log(pathname);
-  // const category = pathname.split("/")[2];
-  //best way
-  // const  obj  = useParams();
-  // console.log(obj);
-  // const category =obj.category;
-  //destructuring
+  
   const { category } = useParams();
   const { products, loading, fetchProducts } = useProducts();
   

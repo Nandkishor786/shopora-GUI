@@ -7,12 +7,12 @@ const ProductCard = ({ item }) => {
 
   // MAIN IMAGE
   const firstImage = item.images?.[0]
-    ? `http://localhost:5000/${item.images[0]}`
+    ? `${import.meta.env.VITE_BACKEND_URL}/${item.images[0]}`
     : "";
 
   // SECOND IMAGE
   const secondImage = item.images?.[1]
-    ? `http://localhost:5000/${item.images[1]}`
+    ? `${import.meta.env.VITE_BACKEND_URL}/${item.images[1]}`
     : firstImage;
 
   // PRELOAD SECOND IMAGE
