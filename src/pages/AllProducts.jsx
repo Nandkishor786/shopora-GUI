@@ -1,245 +1,247 @@
-import React from "react";
-import { assets } from "../assets/assets";
+import React, { useEffect } from "react";
+// import { assets } from "../assets/assets";
 import ProductGrid from "../components/product/ProductGrid";
 import { useParams } from "react-router-dom";
 
-const products = [
-  {
-    id: 1,
-    name: "Relaxed Straight-Leg Trousers",
-    description: "Relaxed Straight-Leg Trousers",
+import useProducts from "../hooks/useProducts";
 
-    price: 78.0,
+// const products = [
+//   {
+//     id: 1,
+//     name: "Relaxed Straight-Leg Trousers",
+//     description: "Relaxed Straight-Leg Trousers",
 
-    category: "women",
-    subCategory: "trousers",
+//     price: 78.0,
 
-    image: assets.trouserfull,
-    hoverImage: assets.relaxTrouser,
+//     category: "women",
+//     subCategory: "trousers",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.trouserfull,
+//     hoverImage: assets.relaxTrouser,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
+//     rating: 4.5,
+//     reviews: 12,
 
-  {
-    id: 2,
-    name: "Classic Cotton Baby Tee",
-    description: "Classic Cotton Baby Tee",
+//     createdAt: "2025-01-01",
+//   },
 
-    price: 35.0,
+//   {
+//     id: 2,
+//     name: "Classic Cotton Baby Tee",
+//     description: "Classic Cotton Baby Tee",
 
-    category: "women",
-    subCategory: "tops",
+//     price: 35.0,
 
-    image: assets.babyteefull,
-    hoverImage: assets.babytee,
+//     category: "women",
+//     subCategory: "tops",
 
-    stock: 15,
-    sizes: ["S", "M", "L"],
+//     image: assets.babyteefull,
+//     hoverImage: assets.babytee,
 
-    rating: 4.2,
-    reviews: 8,
+//     stock: 15,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-02",
-  },
+//     rating: 4.2,
+//     reviews: 8,
 
-  {
-    id: 3,
-    name: "Classic Trench Coat",
-    description: "Classic Trench Coat",
+//     createdAt: "2025-01-02",
+//   },
 
-    price: 260.0,
+//   {
+//     id: 3,
+//     name: "Classic Trench Coat",
+//     description: "Classic Trench Coat",
 
-    category: "women",
-    subCategory: "outerwear",
+//     price: 260.0,
 
-    image: assets.trenchcoatfull,
-    hoverImage: assets.trenchcoat,
+//     category: "women",
+//     subCategory: "outerwear",
 
-    stock: 5,
-    sizes: ["M", "L"],
+//     image: assets.trenchcoatfull,
+//     hoverImage: assets.trenchcoat,
 
-    rating: 4.8,
-    reviews: 20,
+//     stock: 5,
+//     sizes: ["M", "L"],
 
-    createdAt: "2025-01-03",
-  },
+//     rating: 4.8,
+//     reviews: 20,
 
-  {
-    id: 4,
-    name: "Draped Mini Dress",
-    description: "Draped Mini Dress",
+//     createdAt: "2025-01-03",
+//   },
 
-    price: 112.0,
+//   {
+//     id: 4,
+//     name: "Draped Mini Dress",
+//     description: "Draped Mini Dress",
 
-    category: "women",
-    subCategory: "dresses",
+//     price: 112.0,
 
-    image: assets.dress1,
-    hoverImage: assets.dresszoom,
+//     category: "women",
+//     subCategory: "dresses",
 
-    stock: 8,
-    sizes: ["S", "M"],
+//     image: assets.dress1,
+//     hoverImage: assets.dresszoom,
 
-    rating: 4.3,
-    reviews: 10,
+//     stock: 8,
+//     sizes: ["S", "M"],
 
-    createdAt: "2025-01-04",
-  },
+//     rating: 4.3,
+//     reviews: 10,
 
-  {
-    id: 5,
-    name: "Tailored Pleated Trousers",
-    description: "Tailored Pleated Trousers",
+//     createdAt: "2025-01-04",
+//   },
 
-    price: 78.0,
+//   {
+//     id: 5,
+//     name: "Tailored Pleated Trousers",
+//     description: "Tailored Pleated Trousers",
 
-    category: "men",
-    subCategory: "trousers",
+//     price: 78.0,
 
-    image: assets.trouser2,
-    hoverImage: assets.trouser2hover,
+//     category: "men",
+//     subCategory: "trousers",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.trouser2,
+//     hoverImage: assets.trouser2hover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 6,
-    name: "Textured Crewneck Knit",
-    description: "Textured Crewneck Knit",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 78.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 6,
+//     name: "Textured Crewneck Knit",
+//     description: "Textured Crewneck Knit",
 
-    category: "men",
-    subCategory: "Knit",
+//     price: 78.0,
 
-    image: assets.knit,
-    hoverImage: assets.knithover,
+//     category: "men",
+//     subCategory: "Knit",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.knit,
+//     hoverImage: assets.knithover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 7,
-    name: "Soft Linen Blouse",
-    description: "Soft Linen Blouse",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 88.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 7,
+//     name: "Soft Linen Blouse",
+//     description: "Soft Linen Blouse",
 
-    category: "women",
-    subCategory: "blouse",
+//     price: 88.0,
 
-    image: assets.blousefull,
-    hoverImage: assets.blousehover,
+//     category: "women",
+//     subCategory: "blouse",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.blousefull,
+//     hoverImage: assets.blousehover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 8,
-    name: "Merino V-Neck Sweater",
-    description: "Merino V-Neck Sweater",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 130.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 8,
+//     name: "Merino V-Neck Sweater",
+//     description: "Merino V-Neck Sweater",
 
-    category: "women",
-    subCategory: "sweater",
+//     price: 130.0,
 
-    image: assets.sweater,
-    hoverImage: assets.sweaterhover,
+//     category: "women",
+//     subCategory: "sweater",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.sweater,
+//     hoverImage: assets.sweaterhover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 9,
-    name: "Ribbed Wool Socks",
-    description: "Ribbed Wool Socks",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 30.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 9,
+//     name: "Ribbed Wool Socks",
+//     description: "Ribbed Wool Socks",
 
-    category: "accessories",
-    subCategory: "shocks",
+//     price: 30.0,
 
-    image: assets.shocks1,
-    hoverImage: assets.shocks,
+//     category: "accessories",
+//     subCategory: "shocks",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.shocks1,
+//     hoverImage: assets.shocks,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 10,
-    name: "The Mini Handbag",
-    description: "The Mini Handbag",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 210.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 10,
+//     name: "The Mini Handbag",
+//     description: "The Mini Handbag",
 
-    category: "accessories",
-    subCategory: "handbag",
+//     price: 210.0,
 
-    image: assets.handbag,
-    hoverImage: assets.handbaghover,
+//     category: "accessories",
+//     subCategory: "handbag",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.handbag,
+//     hoverImage: assets.handbaghover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-  {
-    id: 11,
-    name: "Lightweight Turtleneck Top",
-    description: "Lightweight Turtleneck Top",
+//     rating: 4.5,
+//     reviews: 12,
 
-    price: 80.0,
+//     createdAt: "2025-01-01",
+//   },
+//   {
+//     id: 11,
+//     name: "Lightweight Turtleneck Top",
+//     description: "Lightweight Turtleneck Top",
 
-    category: "women",
-    subCategory: "top",
+//     price: 80.0,
 
-    image: assets.top,
-    hoverImage: assets.tophover,
+//     category: "women",
+//     subCategory: "top",
 
-    stock: 10,
-    sizes: ["S", "M", "L"],
+//     image: assets.top,
+//     hoverImage: assets.tophover,
 
-    rating: 4.5,
-    reviews: 12,
+//     stock: 10,
+//     sizes: ["S", "M", "L"],
 
-    createdAt: "2025-01-01",
-  },
-];
+//     rating: 4.5,
+//     reviews: 12,
+
+//     createdAt: "2025-01-01",
+//   },
+// ];
 
 const AllProducts = () => {
   //we handle all category men,women,acessories from here
@@ -249,18 +251,26 @@ const AllProducts = () => {
   // const { pathname } = useLocation();
   // console.log(pathname);
   // const category = pathname.split("/")[2];
-//best way
+  //best way
   // const  obj  = useParams();
   // console.log(obj);
   // const category =obj.category;
   //destructuring
-  const {category}  = useParams();
+  const { category } = useParams();
+  const { products, loading, fetchProducts } = useProducts();
+  
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const filterProducts =
     category === "all-products"
       ? products
       : products.filter((item) => item.category === category);
 
+  if (loading) {
+    return <h1 className="text-center text-2xl">Loading...</h1>;
+  }
   return <ProductGrid products={filterProducts} />;
 };
 

@@ -3,9 +3,12 @@ import "./index.css";
 import App from "./App.jsx";
 import "flowbite";
 import { BrowserRouter } from "react-router-dom";
+import ProductProvider from "./context/ProductContext";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <App />
+    <ProductProvider>
+      <App />
+    </ProductProvider>
   </BrowserRouter>,
 );

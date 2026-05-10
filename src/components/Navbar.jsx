@@ -2,9 +2,23 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AddShoppingCart, Menu, Close } from "@mui/icons-material";
 import { assets } from "../assets/assets";
+import AuthPage from "../pages/AuthPage";
+import { logoutUser } from "../services/authService";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+
+  const token = localStorage.getItem("accessToken");
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -61,7 +75,7 @@ const Navbar = () => {
           >
             SEARCH RESULT
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/signup"
             className={({ isActive }) => `
           text-lg font-bold 
@@ -78,12 +92,26 @@ const Navbar = () => {
           `}
           >
             LOGIN
-          </NavLink>
+          </NavLink> */}
+          {token ? (
+            <button
+              onClick={handleLogout}
+              className="text-lg hover:underline underline-offset-1 font-bold"
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="text-lg hover:underline underline-offset-1 font-bold"
+            >
+              LOGIN
+            </button>
+          )}
           <NavLink to="/cart">
             <AddShoppingCart />
           </NavLink>
         </div>
-
         {/* mobile and humberger icon */}
         <div className="md:hidden relative  ">
           {open ? (
@@ -130,7 +158,7 @@ const Navbar = () => {
             >
               SEARCH RESULT
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/signup"
               onClick={() => setOpen(false)}
               className="underline "
@@ -143,7 +171,22 @@ const Navbar = () => {
               className="underline "
             >
               LOGIN
-            </NavLink>
+            </NavLink> */}
+            {token ? (
+              <button
+                onClick={handleLogout}
+                className="text-lg hover:underline underline-offset-1 font-bold"
+              >
+                LOGOUT
+              </button>
+            ) : (
+              <button
+                onClick={() => setAuthOpen(true)}
+                className="text-base underline hover:underline underline-offset-1 "
+              >
+                LOGIN
+              </button>
+            )}
             <NavLink
               to="/cart"
               onClick={() => setOpen(false)}
@@ -154,6 +197,12 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      {/* auth page */}
+      {authOpen && (
+        <div className="fixed inset-0 bg-white backdrop-blur-sm z-50 ">
+          <AuthPage setAuthOpen={setAuthOpen} />
+        </div>
+      )}
     </>
   );
 };

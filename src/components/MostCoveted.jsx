@@ -49,6 +49,7 @@ const collections2 = [
 const MostCoveted = () => {
   // const [hovered,setHovered] =useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <div className="pt-24 w-full h-full">
       <h2 className="text-center text-xl sm:text-3xl font-bold tracking-tight ">
@@ -93,11 +94,19 @@ const MostCoveted = () => {
         <div className="flex flex-col justify-center items-start gap-8">
           {collections2.map((item, index) => (
             <div className="" key={index}>
-              <div className="overflow-hidden w-full h-400px] sm:h-[535px]"
-              onMouseEnter={()=>setHoveredIndex(index)}
-              onMouseLeave={()=>setHoveredIndex(null)}>
-                <img src={hoveredIndex ===index ? item.zoomimage :item.image} alt="image" className="sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110" />
-              </div>  
+              <div
+                className="overflow-hidden w-full h-400px] sm:h-[535px]"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onTouchStart={() => setHoveredIndex(index)}
+                onTouchEnd={() => setHoveredIndex(null)}
+              >
+                <img
+                  src={hoveredIndex === index ? item.zoomimage : item.image}
+                  alt="image"
+                  className="sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110"
+                />
+              </div>
               <div className="flex justify-between  pt-2">
                 <p className="font-semibold text-xl sm:text-2xl">{item.desc}</p>
                 <p className="font-semibold text-lg">{item.price}</p>
