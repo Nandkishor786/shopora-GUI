@@ -19,7 +19,21 @@ import AdminProtectedRoute from "./admin/AdminProtectedRoute";
 import UserProtectedRoute from "./pages/UserProtectedRoute";
 import AddProduct from "./admin/AddProduct";
 import AdminLogin from "./admin/AdminLogin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
+import SplashScreen from "./components/SplashScreen";
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return ()=>clearTimeout(timeId);
+  }, []);
+
+  if (loading) return <SplashScreen />;
   return (
     <>
       <ScrollToTop />
@@ -62,6 +76,16 @@ function App() {
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
     </>
   );
 }

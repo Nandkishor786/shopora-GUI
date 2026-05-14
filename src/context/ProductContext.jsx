@@ -13,7 +13,6 @@ const ProductProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-
       const data = await productServices.getProducts();
 
       setProducts(data.products);

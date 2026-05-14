@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { signupUser } from "../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import CloseIcon from "@mui/icons-material/Close";
 
+import useAuth from "../hooks/useAuth";
+
 const Signup = () => {
+  const { register, loading } = useAuth();
+
   const navigate = useNavigate();
   const [formData, setFormdata] = useState({
     name: "",
@@ -23,12 +26,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await signupUser(formData);
-      console.log(data);
-      navigate("/login")
-      alert("SignUp Successfull");
+      await register(formData);
+      navigate("/login");
     } catch (err) {
-  console.log(err.response.data);
+      console.log(err.response.data);
     }
   };
 
@@ -59,6 +60,7 @@ const Signup = () => {
             <input
               type="text"
               name="name"
+              disabled={loading}
               onChange={handleChange}
               className="border-0 border-b border-gray-400 outline-none focus:border-black py-1 w-full"
             />
@@ -68,6 +70,7 @@ const Signup = () => {
             <input
               type="email"
               name="email"
+              disabled={loading}
               onChange={handleChange}
               className="border-0 border-b border-gray-400 outline-none focus:border-black py-1 w-full"
             />
@@ -77,11 +80,14 @@ const Signup = () => {
             <input
               type="password"
               name="password"
+              disabled={loading}
               onChange={handleChange}
               className="border-0 border-b border-gray-400 outline-none focus:border-black py-1 w-full"
             />
           </div>
-          <Button text="Sign Up" type="submit" onClick={handleSubmit} />
+          <Button type="submit" loading={loading} onClick={handleSubmit}>
+            Sign Up
+          </Button>
         </div>
         {/* google part */}
         <div className="w-[300px]">

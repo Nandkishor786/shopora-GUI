@@ -1,0 +1,21 @@
+@keyframes loading {
+  0%{
+    width: 0%;
+  }
+  70%{
+    width: 70%;
+  }
+  80%{
+    width: 80%;
+  }
+  90%{
+    width: 90%;
+  }
+  100%{
+    width: 100%;
+  }
+}
+
+.animate-loading{
+  animation: loading 3s ease-in-out forwards;
+}

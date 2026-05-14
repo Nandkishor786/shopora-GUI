@@ -4,21 +4,30 @@ import { AddShoppingCart, Menu, Close } from "@mui/icons-material";
 import { assets } from "../assets/assets";
 import AuthPage from "../pages/AuthPage";
 import { logoutUser } from "../services/authService";
+import useAuth from "../hooks/useAuth";
+import Loader from "./Loader";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
-
   const token = localStorage.getItem("accessToken");
+  const { logout, loading } = useAuth();
 
   const handleLogout = async () => {
     try {
-      await logoutUser();
-      
+      await logout();
     } catch (error) {
       console.log(error);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-white z-50 flex justify-center items-center">
+        <Loader />
+      </div>  
+    );
+  }
 
   return (
     <>

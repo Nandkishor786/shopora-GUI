@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { loginUser } from "../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import CloseIcon from "@mui/icons-material/Close";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const { loading, login } = useAuth();
   const navigate = useNavigate();
+  // const [loading, setLoading] = useState(false);
 
   const [formData, setFormdata] = useState({
     email: "",
@@ -20,27 +22,18 @@ const Login = () => {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const data = await loginUser(formData);
-
-    if (data.user.role !== "user") {
-      alert("User access only");
-      return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await login(formData);
+      if (user.role !== "user") {
+        return;
+      }
+      navigate("/");
+    } catch (err) {
+      console.log(err);
     }
-
-    localStorage.setItem("user", JSON.stringify(data.user));
-
-    alert("Login Successful");
-
-    navigate("/");
-
-  } catch (err) {
-    console.log(err);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center  ">
@@ -88,7 +81,9 @@ const handleSubmit = async (e) => {
           >
             Forgot password?
           </Link>
-          <Button text="Log in" type="submit" onClick={handleSubmit} />
+          <Button type="submit" onClick={handleSubmit} loading={loading}>
+            LogIn
+          </Button>
         </div>
         {/* google part */}
         <div className="w-[300px]">

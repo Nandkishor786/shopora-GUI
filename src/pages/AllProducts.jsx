@@ -4,6 +4,7 @@ import ProductGrid from "../components/product/ProductGrid";
 import { useParams } from "react-router-dom";
 
 import useProducts from "../hooks/useProducts";
+import Loader from "../components/Loader";
 
 // const products = [
 //   {
@@ -244,10 +245,9 @@ import useProducts from "../hooks/useProducts";
 // ];
 
 const AllProducts = () => {
-  
   const { category } = useParams();
   const { products, loading, fetchProducts } = useProducts();
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -258,7 +258,7 @@ const AllProducts = () => {
       : products.filter((item) => item.category === category);
 
   if (loading) {
-    return <h1 className="text-center text-2xl">Loading...</h1>;
+    return <Loader />;
   }
   return <ProductGrid products={filterProducts} />;
 };
