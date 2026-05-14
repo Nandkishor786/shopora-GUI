@@ -30,75 +30,77 @@ const Navbar = () => {
   }
   return (
     <>
-      <div className="flex justify-around    items-center  w-full py-6 sticky top-0 z-10 bg-white border-b   ">
+      <div className="flex justify-between  items-center  w-full py-6 sticky top-0 z-10 bg-white border-b px-4 sm:px-6  ">
         {/* Desktop */}
         {/* logo */}
         <NavLink to="/" className="">
           <img src={assets.Shopora} alt="shopora" className="h-10" />
         </NavLink>
-        <NavLink
-          to="/category/all-products"
-          className={({ isActive }) => `
-          text-lg font-bold 
+        <div className="hidden md:flex items-center justify-around gap-8 w-[80%]">
+           <NavLink
+            to="/category/all-products"
+            className={({ isActive }) => `
+          text-lg font-bold hidden md:block
           ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
           `}
-        >
-          ALL PRODUCTS
-        </NavLink>
-        <NavLink
-          to="/category/women"
-          className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-        >
-          WOMEN
-        </NavLink>
-        <NavLink
-          to="/category/men"
-          className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-        >
-          MEN
-        </NavLink>
-        <NavLink
-          to="/category/accessories"
-          className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-        >
-          ACCESSORIES
-        </NavLink>
-        <NavLink
-          to="/search"
-          className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-        >
-          SEARCH RESULT
-        </NavLink>
-        {token ? (
-          <button
-            onClick={handleLogout}
-            className="text-lg hover:underline underline-offset-1 font-bold"
           >
-            LOGOUT
-          </button>
-        ) : (
-          <button
-            onClick={() => setAuthOpen(true)}
-            className="text-lg hover:underline underline-offset-1 font-bold"
+            ALL PRODUCTS
+          </NavLink>
+          <NavLink
+            to="/category/women"
+            className={({ isActive }) => `
+          text-lg font-bold hidden md:block
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
           >
-            LOGIN
-          </button>
-        )}
-        <NavLink to="/cart">
-          <AddShoppingCart />
-        </NavLink>
+            WOMEN
+          </NavLink>
+          <NavLink
+            to="/category/men"
+            className={({ isActive }) => `
+          text-lg font-bold  hidden md:block
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+          >
+            MEN
+          </NavLink>
+          <NavLink
+            to="/category/accessories"
+            className={({ isActive }) => `
+          text-lg font-bold hidden md:block
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+          >
+            ACCESSORIES
+          </NavLink>
+          <NavLink
+            to="/search"
+            className={({ isActive }) => `
+          text-lg font-bold hidden md:block
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+          >
+            SEARCH RESULT
+          </NavLink>
+          {token ? (
+            <button
+              onClick={handleLogout}
+              className="text-lg hover:underline underline-offset-1 font-bold hidden md:block"
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="text-lg hover:underline underline-offset-1 font-bold hidden md:block"
+            >
+              LOGIN
+            </button>
+          )}
+          <NavLink to="/cart" className="hidden md:block">
+            <AddShoppingCart />
+          </NavLink>
+        </div>
 
         {/* mobile and humberger icon */}
         <div className="md:hidden relative  ">
@@ -146,21 +148,7 @@ const Navbar = () => {
             >
               SEARCH RESULT
             </NavLink>
-            {/* <NavLink
-              to="/signup"
-              onClick={() => setOpen(false)}
-              className="underline "
-            >
-              SIGN UP
-            </NavLink>
-            <NavLink
-              to="/login"
-              onClick={() => setOpen(false)}
-              className="underline "
-            >
-              LOGIN
-            </NavLink> */}
-            {token ? (
+             {token ? (
               <button
                 onClick={handleLogout}
                 className="text-lg hover:underline underline-offset-1 font-bold"
