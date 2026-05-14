@@ -34,18 +34,32 @@ const ProductCard = ({ item }) => {
 
       <div className="relative overflow-hidden h-[300px] sm:h-[550px]">
         <img
-          src={hovered ? secondImage : firstImage}
+          src={firstImage}
           alt={item.name}
           className={`
+            absolute inset-0
             object-cover
-            transition-transform
+            transition-all
             duration-300
             w-full
             h-full
-            ${hovered ? "scale-110" : "scale-100"}
+            ${hovered ? " opacity-0 scale-110" : " opacity-100 scale-100 "}
           `}
         />
-
+        <img
+          src={secondImage}
+          alt={item.name}
+          className={`
+            absolute
+             inset-0
+            object-cover
+            transition-all
+            duration-300
+            w-full  
+            h-full
+            ${hovered ? "scale-110 opacity-100" : " opacity-0 scale-100 "}
+          `}
+        />
         <button className="absolute bottom-6 right-6 bg-white p-2">
           <Add className="text-black font-bold h-5 w-5" />
         </button>
