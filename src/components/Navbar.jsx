@@ -25,102 +25,81 @@ const Navbar = () => {
     return (
       <div className="fixed inset-0 bg-white z-50 flex justify-center items-center">
         <Loader />
-      </div>  
+      </div>
     );
   }
-
   return (
     <>
-      <div className="flex justify-between    items-center  max-w-7xl mx-auto sm:px-8 px-4 py-6 sticky top-0 z-10 bg-white border-b ">
+      <div className="flex justify-around    items-center  w-full py-6 sticky top-0 z-10 bg-white border-b   ">
+        {/* Desktop */}
         {/* logo */}
         <NavLink to="/" className="">
           <img src={assets.Shopora} alt="shopora" className="h-10" />
         </NavLink>
-
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-10">
-          <NavLink
-            to="/category/all-products"
-            className={({ isActive }) => `
+        <NavLink
+          to="/category/all-products"
+          className={({ isActive }) => `
           text-lg font-bold 
           ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
           `}
+        >
+          ALL PRODUCTS
+        </NavLink>
+        <NavLink
+          to="/category/women"
+          className={({ isActive }) => `
+          text-lg font-bold 
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+        >
+          WOMEN
+        </NavLink>
+        <NavLink
+          to="/category/men"
+          className={({ isActive }) => `
+          text-lg font-bold 
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+        >
+          MEN
+        </NavLink>
+        <NavLink
+          to="/category/accessories"
+          className={({ isActive }) => `
+          text-lg font-bold 
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+        >
+          ACCESSORIES
+        </NavLink>
+        <NavLink
+          to="/search"
+          className={({ isActive }) => `
+          text-lg font-bold 
+          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
+          `}
+        >
+          SEARCH RESULT
+        </NavLink>
+        {token ? (
+          <button
+            onClick={handleLogout}
+            className="text-lg hover:underline underline-offset-1 font-bold"
           >
-            ALL PRODUCTS
-          </NavLink>
-          <NavLink
-            to="/category/women"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-          >
-            WOMEN
-          </NavLink>
-          <NavLink
-            to="/category/men"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-          >
-            MEN
-          </NavLink>
-          <NavLink
-            to="/category/accessories"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-          >
-            ACCESSORIES
-          </NavLink>
-          <NavLink
-            to="/search"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-          >
-            SEARCH RESULT
-          </NavLink>
-          {/* <NavLink
-            to="/signup"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
-          >
-            SIGN UP
-          </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive }) => `
-          text-lg font-bold 
-          ${isActive ? "underline underline-offset-1 decoration-1" : "hover:underline"}
-          `}
+            LOGOUT
+          </button>
+        ) : (
+          <button
+            onClick={() => setAuthOpen(true)}
+            className="text-lg hover:underline underline-offset-1 font-bold"
           >
             LOGIN
-          </NavLink> */}
-          {token ? (
-            <button
-              onClick={handleLogout}
-              className="text-lg hover:underline underline-offset-1 font-bold"
-            >
-              LOGOUT
-            </button>
-          ) : (
-            <button
-              onClick={() => setAuthOpen(true)}
-              className="text-lg hover:underline underline-offset-1 font-bold"
-            >
-              LOGIN
-            </button>
-          )}
-          <NavLink to="/cart">
-            <AddShoppingCart />
-          </NavLink>
-        </div>
+          </button>
+        )}
+        <NavLink to="/cart">
+          <AddShoppingCart />
+        </NavLink>
+
         {/* mobile and humberger icon */}
         <div className="md:hidden relative  ">
           {open ? (

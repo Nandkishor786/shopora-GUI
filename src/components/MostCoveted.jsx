@@ -95,16 +95,25 @@ const MostCoveted = () => {
           {collections2.map((item, index) => (
             <div className="" key={index}>
               <div
-                className="overflow-hidden w-full h-400px] sm:h-[535px]"
+                className="overflow-hidden w-full h-400px] sm:h-[535px] relative"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 onTouchStart={() => setHoveredIndex(index)}
                 onTouchEnd={() => setHoveredIndex(null)}
               >
                 <img
-                  src={hoveredIndex === index ? item.zoomimage : item.image}
+                  src={item.image}
                   alt="image"
-                  className="sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110"
+                  className={`
+                    absolute inset-0
+                    sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110
+                    ${hoveredIndex===index ? "opacity-0 scale-110" :"opacity-100 scale-100"}`}
+                />
+                    <img
+                  src={item.zoomimage}
+                  alt="image"
+                  className={`sm:w-[600px] object-contain transition-transform duration-300  hover:scale-110
+                    ${hoveredIndex===index ?"opacity-100 scale-110": "opacity-0 scale-100"}`}
                 />
               </div>
               <div className="flex justify-between  pt-2">
