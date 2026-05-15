@@ -23,6 +23,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/SplashScreen";
+import ProductDetails from "./pages/ProductDetails";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +31,7 @@ function App() {
     const timeId = setTimeout(() => {
       setLoading(false);
     }, 3000);
-    return ()=>clearTimeout(timeId);
+    return () => clearTimeout(timeId);
   }, []);
 
   if (loading) return <SplashScreen />;
@@ -54,6 +55,7 @@ function App() {
               </UserProtectedRoute>
             }
           />
+          <Route path="product-page/:id" element={<ProductDetails />} />
         </Route>
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />

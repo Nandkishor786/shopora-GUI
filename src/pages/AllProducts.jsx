@@ -260,7 +260,13 @@ const AllProducts = () => {
   if (loading) {
     return <Loader />;
   }
-  return <ProductGrid products={filterProducts} />;
+  return (
+    <ProductGrid
+      products={filterProducts}
+      showAddButton={true}
+      showQuickView={false}
+    />
+  );
 };
 
 export default AllProducts;

@@ -152,7 +152,11 @@ const SearchResult = () => {
               </p>
             </div>
           ) : (
-            <ProductGrid products={filteredProducts} />
+            <ProductGrid
+              products={filteredProducts}
+              showQuickView={true}
+              showAddButton={false}
+            />
           )}
         </div>
       </div>

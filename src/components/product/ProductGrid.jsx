@@ -10,7 +10,7 @@ const options = [
   "Name Z-A",
 ];
 
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({ products,showAddButton=false,showQuickView =false }) => {
   const [sortType, setSortType] = useState("Recommended");
 
   //retrun= 0=>same order,-1=>low to high ,+1=>high-low
@@ -37,7 +37,7 @@ const ProductGrid = ({ products }) => {
       {/* product grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {sortedProducts.map((item, index) => (
-          <ProductCard item={item} key={item.id || index} />
+          <ProductCard item={item} key={item.id || index} showAddButton={showAddButton} showQuickView={showQuickView} />
         ))}
       </div>
     </div>

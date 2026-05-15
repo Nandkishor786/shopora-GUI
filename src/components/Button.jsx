@@ -8,7 +8,7 @@ const Button = ({
   loading = false,
   disabled = false,
 
-  classname = "bg-[#e60000] p-3 w-full text-white text-lg text-center font-medium rounded-md",
+  classname = "bg-[#e60000] text-white rounded-md p-3",
 }) => {
   return (
     <button
@@ -17,7 +17,7 @@ const Button = ({
       disabled={disabled || loading}
       className={`
         ${classname}
-
+          w-full text-lg text-center font-medium
         transition-all duration-300
 
         ${
